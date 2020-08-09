@@ -1,0 +1,21 @@
+service: dropbox-api
+
+app: dropbox-auth
+org: #fill
+
+provider:
+  name: aws
+  runtime: nodejs10.x
+  memorySize: 128
+  timeout: 6
+
+functions:
+  hello:
+    handler: handler.auth
+    environment:
+      DROPBOX_APP_KEY: #FILL
+      DROPBOX_APP_SECRET: #FILL
+    events:
+      - http:
+          path: auth
+          method: post
